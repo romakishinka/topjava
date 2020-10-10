@@ -17,6 +17,8 @@ public class SpringMain {
             adminUserController.create(new User(null, "userName", "email@mail.ru", "password", Role.ADMIN));
         }
 
+        System.out.println("ht2");
+
     }
 
 
