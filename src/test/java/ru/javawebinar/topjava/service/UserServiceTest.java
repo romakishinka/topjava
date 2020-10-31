@@ -32,12 +32,12 @@ public class UserServiceTest {
 
     @Test
     public void create() throws Exception {
-        User newUser = getNew();
-        User created = service.create(newUser);
+        User created = service.create(getNew());
         Integer newId = created.getId();
+        User newUser = getNew();
         newUser.setId(newId);
-        assertMatch(created, newUser);
-        assertMatch(service.get(newId), newUser);
+        USER_MATCHER.assertMatch(created, newUser);
+        USER_MATCHER.assertMatch(service.get(newId), newUser);
     }
 
     @Test
@@ -71,19 +71,19 @@ public class UserServiceTest {
     @Test
     public void getByEmail() throws Exception {
         User user = service.getByEmail("admin@gmail.com");
-        assertMatch(user, admin);
+        USER_MATCHER.assertMatch(user, admin);
     }
 
     @Test
     public void update() throws Exception {
         User updated = getUpdated();
         service.update(updated);
-        assertMatch(service.get(USER_ID), updated);
+        USER_MATCHER.assertMatch(service.get(USER_ID), getUpdated());
     }
 
     @Test
     public void getAll() throws Exception {
         List<User> all = service.getAll();
-        assertMatch(all, admin, user);
+        USER_MATCHER.assertMatch(all, admin, user);
     }
 }
